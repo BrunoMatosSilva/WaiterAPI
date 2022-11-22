@@ -25,8 +25,8 @@ mongoose.connect(`${process.env.MONGODB_URL}`)
     app.use(express.json());
     app.use(router);
 
-    serverHttp.listen(3004, () => {
-      console.log('🚀Server is running na PORT 3004');
+    serverHttp.listen(8080, () => {
+      console.log('🚀Server is running na PORT 8080');
     });
   })
   .catch(() => console.log('Erro ao conectar no mongodb!'));
