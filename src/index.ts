@@ -14,7 +14,7 @@ export const io = new Server(serverHttp);
 
 mongoose.connect(`${process.env.MONGODB_URL}`)
   .then(() => {
-    const port = process.env.PORT;
+    const PORT = process.env.PORT;
 
     app.use((req, res, next) => {
       res.setHeader('Access-Control-Allow-Origin', '*');
@@ -26,8 +26,8 @@ mongoose.connect(`${process.env.MONGODB_URL}`)
     app.use(express.json());
     app.use(router);
 
-    serverHttp.listen(port, () => {
-      console.log(`🚀Server is running na PORT ${port}!`);
+    serverHttp.listen(PORT, () => {
+      console.log(`🚀Server is running na PORT ${PORT}!`);
     });
   })
   .catch(() => console.log('Erro ao conectar no mongodb!'));
