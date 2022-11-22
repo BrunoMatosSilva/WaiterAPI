@@ -1,16 +1,12 @@
 import path from 'node:path';
-import http from 'node:http';
 import express from 'express';
 import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
-import { Server } from 'socket.io';
 
 import { router } from './router';
 
 dotenv.config();
 const app = express();
-const serverHttp = http.createServer(app);
-export const io = new Server(serverHttp);
 
 mongoose.connect(`${process.env.MONGODB_URL}`)
   .then(() => {
@@ -26,7 +22,7 @@ mongoose.connect(`${process.env.MONGODB_URL}`)
     app.use(express.json());
     app.use(router);
 
-    serverHttp.listen(PORT, () => {
+    app.listen(PORT, () => {
       console.log(`🚀Server is running na PORT ${PORT}!`);
     });
   })
